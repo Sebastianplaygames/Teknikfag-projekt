@@ -28,11 +28,9 @@ function preload(){
   farmer.anis.frameDelay = 8;
   farmer.scale = 0.6
   	farmer.addAnis({
-		stand: { row: 0, frames:8 }
+		stand: { row: 0, frames:4 }
 	});
   	farmer.changeAni('stand');
-
-  
 
   
   player = new Sprite(20, 20,32, 32)
