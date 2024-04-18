@@ -1,7 +1,8 @@
-let player,player2, floor, test, gras;
+let player,player2, floor, test, gras, img;
 let playerimg;
 
 function preload(){
+  img = loadImage('doggo2.png');
   /*
   gras = loadImage("GRASS+.png")
   grass = new Group();
@@ -14,13 +15,14 @@ function preload(){
   */
   baggrund = new Sprite(0,30)
   baggrund.collider = 'none';
-  baggrund.img = 'funny.png'
-  baggrund.diameter = 10
-  baggrund.scale = 0.25
+  baggrund.img = 'skole.webp'
+  //baggrund.diameter = 10
+  baggrund.scale = 1
   
   
   //41, 44
-  farmer = new Sprite(20, 20,68.33, 73.33)
+  //farmer npc sprite
+  farmer = new Sprite(145, -13,68.33, 73.33)
   farmer.spriteSheet = 'farmer1.png'; 
   farmer.collider = "none"
  // farmer.diameter = 32
@@ -32,7 +34,19 @@ function preload(){
 	});
   	farmer.changeAni('stand');
 
-  
+    doggo = new Sprite(20, 60,109.166, 105)
+    doggo.spriteSheet = 'doggo2.png'; 
+    doggo.collider = "none"
+   // farmer.diameter = 32
+    doggo.anis.offset.x = 2;
+    doggo.anis.frameDelay = 8;
+    doggo.scale = 0.4
+      doggo.addAnis({
+      stand: { row: 0, frames:3 }
+    });
+      farmer.changeAni('stand');
+
+  //player sprite
   player = new Sprite(20, 20,32, 32)
   player.spriteSheet = 'questKid.png'; 
   player.debug = (0,0,30,10);
@@ -54,7 +68,8 @@ player.diameter = 32
 
 function setup() {
  
-	new Canvas(600, 340);
+	new Canvas(600, 400);
+
   	allSprites.pixelPerfect = true;
 	
   /*
@@ -109,15 +124,15 @@ camera.zoom = 2;
     player.changeAni('run') 
 	player.mirror.x = true;
 }
-else if (kb.pressing('right')) {player.vel.x = 2;
+else if (kb.pressing('right')) {player.vel.x = 1.5;
  player.changeAni('run') 
  player.mirror.x = false;
 }
   else player.vel.x = 0;
-    if (kb.pressing('up')){ player.vel.y = -2;
+    if (kb.pressing('up')){ player.vel.y = -1.5;
   player.changeAni('wup')  
 }
-else if (kb.pressing('down')) {player.vel.y = 2;
+else if (kb.pressing('down')) {player.vel.y = 1.5;
  player.changeAni('run') 
 }
   else player.vel.y = 0;
@@ -125,11 +140,12 @@ else if (kb.pressing('down')) {player.vel.y = 2;
   if (player.vel.y == 0 && player.vel.x == 0){
     player.changeAni('stand')  
   }
-  
+
 }
 
 function eksempel(){
   rect(20,20,20, 'static')
   background(testimg);
  // baggrund.image = testimg;
+
 }
