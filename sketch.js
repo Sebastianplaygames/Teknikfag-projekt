@@ -102,7 +102,7 @@ function setup() {
 	floor = new Sprite(250, 200, 500, 40, 'static');
     test = new Sprite(100, 100, 50,50, 'static');
      player.removeColliders();
-   	 player.addCollider (0,2,24);
+   	 player.addCollider (0,4,20);
 }
 
 function draw() {
@@ -139,6 +139,16 @@ else if (kb.pressing('down')) {player.vel.y = 1.5;
   
   if (player.vel.y == 0 && player.vel.x == 0){
     player.changeAni('stand')  
+  }
+
+  if(player.x >= width/2-2){
+    player.vel.x = -3
+  } else if(player.x <= -width/2+2) {
+    player.vel.x = 3
+  } if(player.y >= height/2+70){
+    player.vel.y = -3
+  } else if(player.y <= -height/2-20) {
+    player.vel.y = 3
   }
 
 }
