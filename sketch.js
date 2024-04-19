@@ -1,27 +1,16 @@
-let player,player2, floor, test, gras, img;
+let player,player2, floor, test;
 let playerimg;
 
 function preload(){
   img = loadImage('doggo2.png');
-  /*
-  gras = loadImage("GRASS+.png")
-  grass = new Group();
-  grass.collider = "none";
-  grass.spriteSheet = gras;
-  grass.addAni({w:16, h:16, row:1, col:1});
-  grass.tile = 'g';
-  grass.w = 20;
-  grass.h = 20;
-  */
+
+//background setup
   baggrund = new Sprite(0,30)
   baggrund.collider = 'none';
   baggrund.img = 'skole.webp'
-  //baggrund.diameter = 10
-  baggrund.scale = 1
-  
-  
-  //41, 44
-  //farmer npc sprite
+
+
+//farmer npc sprite
   farmer = new Sprite(145, -13,68.33, 73.33)
   farmer.spriteSheet = 'farmer1.png'; 
   farmer.collider = "none"
@@ -34,17 +23,17 @@ function preload(){
 	});
   	farmer.changeAni('stand');
 
-    doggo = new Sprite(20, 60,109.166, 105)
+//dog npc sprite
+    doggo = new Sprite(-250, 240,109.166, 105)
     doggo.spriteSheet = 'doggo2.png'; 
     doggo.collider = "none"
-   // farmer.diameter = 32
     doggo.anis.offset.x = 2;
     doggo.anis.frameDelay = 8;
     doggo.scale = 0.4
       doggo.addAnis({
       stand: { row: 0, frames:3 }
     });
-      farmer.changeAni('stand');
+      doggo.changeAni('stand');
 
   //player sprite
   player = new Sprite(20, 20,32, 32)
@@ -61,46 +50,13 @@ player.diameter = 32
 		stand: { row: 3 }
 	});
   	player.changeAni('stand');
-  
-//  player.setCollider("rectangle",0,0,40,50);
-  
 }
 
 function setup() {
- 
 	new Canvas(600, 400);
-
-  	allSprites.pixelPerfect = true;
+  allSprites.pixelPerfect = true;
 	
-  /*
-    new Tiles(
-      [
-        'g               g',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        '              ',
-        'g               g',
-        10,50, //x, y
-        grass.w, grass.h
-  
-      ]
-    )
-  */
-	
-	floor = new Sprite(250, 200, 500, 40, 'static');
-    test = new Sprite(100, 100, 50,50, 'static');
+// player collider
      player.removeColliders();
    	 player.addCollider (0,4,20);
 }
@@ -109,16 +65,15 @@ function draw() {
  	player.debug = mouse.pressing();
 	clear();
 
-    camera.x = player.x;
-	camera.y = player.y;
+//camera setup
+camera.x = player.x;
+camera.y = player.y;
 camera.zoom = 2;
-  player.rotationLock = true;
- // player.setCollider ("circle",0,0,40,50);
-  
  
   
   
-   
+// player movement + boundries
+player.rotationLock = true;
   if (kb.pressing('left')){
     player.vel.x = -2;
     player.changeAni('run') 
@@ -150,12 +105,5 @@ else if (kb.pressing('down')) {player.vel.y = 1.5;
   } else if(player.y <= -height/2-20) {
     player.vel.y = 3
   }
-
-}
-
-function eksempel(){
-  rect(20,20,20, 'static')
-  background(testimg);
- // baggrund.image = testimg;
 
 }
