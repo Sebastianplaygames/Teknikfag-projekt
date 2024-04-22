@@ -1,5 +1,8 @@
 class Opgaver{
 
+ 
+  
+  let buttonchecker;
 constructor(){
     let button = createButton('click me');
     button.position(150, 350);
@@ -19,10 +22,14 @@ constructor(){
     
 }
 
+
+
+function matopger(){
+
 if(opgavebestemmer == 1){
     
     
-    function math() {
+   
     
     
     
@@ -48,9 +55,7 @@ if(opgavebestemmer == 1){
       
     }
     
-    
-    
-    
+
       //anden del hvor selve opgaven er.
     
     
@@ -105,11 +110,7 @@ if(opgavebestemmer == 1){
       
       }
     
-      
-      
-      
-      
-      
+
   }
     
 
@@ -121,9 +122,7 @@ if(opgavebestemmer == 1){
     
     }
     
-    
-    
-    
+
     
     //anden del slut
     
@@ -161,8 +160,7 @@ if(opgavebestemmer == 1){
    opgavebestemmer = opgavebestemmer + 1;
     }
   
-   
-    
+ 
    }
     
     
@@ -295,7 +293,7 @@ if(opgavebestemmer == 1){
   //console.log(forklare)
   //console.log(opgavebestemmer)
   //console.log(stuff)
-}
+  }
 
 
 
