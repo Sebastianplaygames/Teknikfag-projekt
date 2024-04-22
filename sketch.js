@@ -8,15 +8,29 @@ let klikvidere;
 let myButton;
 let myInput;
 let myText;
-let stuff;
+let svar;
 let bgColor;
-let actualstuff;
+let indtastedesvar;
 let buttonmaker;
 
 let buttonchecker;
 
 function preload(){
   img = loadImage('doggo2.png');
+// matopgintro1 = new sprite(0,30)
+  //matopgintro1.img = 'matopgintro1.webp'
+  //matopgintro1.collider = "none"
+  //loadImage('matopgintro1.webp');  
+  matopgintro1 = loadImage('matopgintro1.webp'); 
+  matopgintro2 = loadImage('matopgintro2.webp');  
+  
+  matopg1 = loadImage('matopg1.webp');
+
+  matopg2 = loadImage('matopg2.webp');
+  
+  forklaring1 = loadImage('forklaring1.webp');
+  
+  forklaring2 = loadImage('forklaring2.webp');
 
   //background colliders
   bcollider = new Sprite() ;
@@ -105,6 +119,19 @@ function preload(){
 
 function setup() {
 	new Canvas(600, 400);
+  
+  
+  
+  buttonmaker = false;
+  
+  bladre = 0;
+  
+  opgavebestemmer = 1;
+  
+  buttonchecker = true;
+  
+  forklare = false;
+  
   allSprites.pixelPerfect = true;
 	
 // player collider
@@ -158,6 +185,324 @@ else if (kb.pressing('down')) {player.vel.y = 1.5;
     player.vel.y = 3
   }
 
+//console.log(player.x,player.y)
+//}
+
+//function matopgaver(){
+
+  if (mouse.pressed && mouse.x >= 170){
+player.x == 10
 console.log(player.x,player.y)
+ }
+if(opgavebestemmer == 1){
+  //første del hvor introduktioenen er.
+  
+  if(bladre == 0){
+  
+image(matopgintro1,0,0);
+    
+    //buttonmaker når den er false laver knappen til at gå til næste trin
+    if(buttonmaker == false){
+    
+    klikvidere = createButton('next');
+    
+    klikvidere.position(180 , 200);
+    
+    klikvidere.mousePressed(bladrer);
+    
+    buttonmaker = true;
+    }
+    
+
+    
+  }
+    //anden del hvor selve opgaven er.
+  if(bladre == 1){
+    
+    
+    image(matopg1,0,0);
+    
+  //buttonmaker når den er rigtig laver knapperne til selve opgaven
+  if(buttonmaker){
+   
+  myButton = createButton('godkend');
+  
+  myInput = createInput('svar');
+  
+  myInput.position(20, 250);
+  
+  myButton.position(25 + myInput.width, 250);
+    
+    myButton.mousePressed(gemværdi);
+    
+    myInput.input(typing);
+    
+    
+     forklaring = createButton('forklar');
+    
+    forklaring.position(250 , 20);
+    
+    forklaring.mousePressed(forklar);
+    
+
+    buttonmaker = false;
+    
+  }
+    
+    
+    
+    //buttonchecker fjerner skip knappen for introen
+              if(buttonchecker == true){
+  
+klikvidere.remove();
+
+buttonchecker = false;
+
+  }
+    
+    //hvis forklar knappen trykkes kommer forklaringen frem
+     if(forklare){
+    
+    image(forklaring1,300,0);
+    
+    }
+  
+    
+    
+    
+    
+    
+}
+  
+
+  
+    //resultatet
+  if(indtastedesvar == 37){
+  
+  rect(300,300,100,100)
+  
+  }
+  
+  
+  
+  
+  
+  //anden del slut
+  
+}
+
+
+
+
+if(opgavebestemmer == 2){
+  
+  //hvis introduktionen ikke er skippet så kommer man tilbage på opgaven
+  
+  if(bladre == 0){
+  opgavebestemmer = opgavebestemmer - 1;
+  
+  }
+  
+
+//her fjernes knapperne fra den forrige opg
+ if(opgavebestemmer == 2){
+if(buttonchecker == false){
+  
+myButton.remove();
+myInput.remove();
+
+forklaring.remove(); 
+ 
+indtastedesvar = 0;
+ buttonmaker = false;
+buttonchecker = true;
+       bladre = 0;
+ forklare = false;
+
+
+ opgavebestemmer = opgavebestemmer + 1;
+  }
+
+ 
+  
+ }
+  
+  
+  
+  
+}
+  
+  
+  
+
+if(opgavebestemmer == 3){
+  
+  
+  
+
+//første del
+  if(bladre == 0){
+  
+image(matopgintro2,0,-60);
+    
+    
+    if(buttonmaker == false){
+    
+    klikvidere = createButton('next');
+    
+    klikvidere.position(180 , 200);
+    
+    klikvidere.mousePressed(bladrer);
+    
+    buttonmaker = true;
+    }
+    
+  }
+  
+  //anden del
+  
+  if(bladre == 1){
+  
+    image(matopg2,0,0);
+    
+      if(buttonmaker){
+   
+  myButton = createButton('godkend'); 
+  
+  myInput = createInput('svar');
+  
+  myInput.position(20, 250);
+  
+  myButton.position(25 + myInput.width, 250);
+    
+    myButton.mousePressed(gemværdi);
+    
+    myInput.input(typing);
+    
+    
+     forklaring = createButton('forklar');
+    
+    forklaring.position(250 , 20);
+    
+    forklaring.mousePressed(forklar);
+    
+
+    buttonmaker = false;
+    
+  }
+  
+  if(buttonchecker == true){
+  
+klikvidere.remove();
+
+buttonchecker = false;
+
+  }
+    
+    if(forklare){
+    
+    image(forklaring2,300,0);
+    
+    }
+     if(indtastedesvar == 3){
+  
+  rect(300,300,100,100)
+  
+  }
+  
+  }
+
+}
+
+console.log(bladre)
+console.log(buttonchecker)
+console.log(opgavebestemmer)
+
+if(opgavebestemmer == 4){
+
+if(bladre == 0){
+  opgavebestemmer = opgavebestemmer - 1;
+  
+  }
+  
+
+
+ if(opgavebestemmer == 4){
+if(buttonchecker == false){
+  
+myButton.remove();
+myInput.remove();
+klikvidere.remove();
+forklaring.remove(); 
+ 
+indtastedesvar = 0;
+ buttonmaker = false;
+buttonchecker = true;
+       bladre = 0;
+ forklare = false;
+
+
+ opgavebestemmer = opgavebestemmer + 1;
+  }
+
+ 
+  
+ }
+ 
+  
+ }
+
+
+
+//console.log(forklare)
+//console.log(opgavebestemmer)
+//console.log(stuff)
+ 
+}
+
+
+
+function opgrader(){
+
+opgavebestemmer = opgavebestemmer + 1;
+
+
+if(opgavebestemmer >= 5){
+opgavebestemmer = 1;
+
+}
+
+}
+
+
+function gemværdi() {
+  
+  indtastedesvar = svar;
+}
+
+function typing() {
+  svar = this.value();
+}
+
+function bladrer(){
+
+bladre = bladre + 1;
+
+if(bladre == 2){
+  bladre = 0
+}
+
+}
+
+
+function forklar(){
+
+
+
+forklare = !forklare;
+
+  
+
+
 
 }
