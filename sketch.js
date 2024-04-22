@@ -9,12 +9,12 @@ let myButton;
 let myInput;
 let myText;
 let svar;
-let bgColor;
 let indtastedesvar;
 let buttonmaker;
 let indeiopgave;
 let buttonchecker;
 let altimappet = 1000;
+let klaret1, klaret2;
 function preload(){
   img = loadImage('doggo2.png');
 
@@ -62,6 +62,15 @@ function preload(){
   baggrund.collider = 'none';
   baggrund.img = 'skolewood.webp'
 
+crow = new Sprite(altimappet,170)
+crow.img = 'scarecrow.webp';
+crow.collider = 'none';
+crow.scale = 0.45
+
+doghouse = new Sprite(altimappet,150)
+doghouse.img = 'doggohouse.png';
+doghouse.collider = 'none';
+doghouse.scale = 0.1
 
 //farmer npc sprite
   farmer = new Sprite(145, -13,68.33, 73.33)
@@ -118,7 +127,8 @@ function setup() {
 	new Canvas(600, 400);
   
   indeiopgave = false
-  
+  klaret1 = false
+  klaret2 = false
   
   buttonmaker = false;
   
@@ -188,7 +198,7 @@ console.log(player.x,player.y)
 
 //function matopgaver(){
 
-  if (mouse.x >= 145 && mouse.x <= 160 && mouse.y >= -25 && mouse.y <= 0 && indeiopgave == false){
+  if (mouse.x >= 145 && mouse.x <= 160 && mouse.y >= -25 && mouse.y <= 0 && indeiopgave == false && klaret1 == false){
    indeiopgave = true;  
    baggrund.x = baggrund.x+altimappet
    bcollider.x = bcollider.x+altimappet
@@ -266,13 +276,7 @@ buttonchecker = false;
     
     image(forklaring1,300,0);
     
-    }
-  
-    
-    
-    
-    
-    
+  }
 }
   
 
@@ -282,7 +286,9 @@ buttonchecker = false;
     baggrund.x = baggrund.x-altimappet
     bcollider.x = bcollider.x-altimappet
     farmer.x = farmer.x-altimappet
+    crow.x = 207
     indeiopgave = false
+    klaret1 = true
  opgavebestemmer = 2
 
     //hvis introduktionen ikke er skippet så kommer man tilbage på opgaven
@@ -328,7 +334,7 @@ buttonchecker = false;
   
 }
 
-if (mouse.x >= -280 && mouse.x <= -269 && mouse.y >= 198 && mouse.y <= 215 && indeiopgave == false){
+if (mouse.x >= -280 && mouse.x <= -269 && mouse.y >= 198 && mouse.y <= 215 && indeiopgave == false && klaret2 == false){
     indeiopgave = true;  
     baggrund.x = baggrund.x+altimappet
     bcollider.x = bcollider.x+altimappet
@@ -411,6 +417,8 @@ buttonchecker = false;
       bcollider.x = bcollider.x-altimappet
       dogOwner.x = dogOwner.x-altimappet
       doggo.x = doggo.x-altimappet
+      doghouse.x = -240
+      klaret2 = true
  opgavebestemmer = 0
  indeiopgave = false
       myButton.remove();
