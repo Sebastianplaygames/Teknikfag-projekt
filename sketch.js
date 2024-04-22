@@ -12,15 +12,12 @@ let svar;
 let bgColor;
 let indtastedesvar;
 let buttonmaker;
-
+let indeiopgave;
 let buttonchecker;
-
+let altimappet = 1000;
 function preload(){
   img = loadImage('doggo2.png');
-// matopgintro1 = new sprite(0,30)
-  //matopgintro1.img = 'matopgintro1.webp'
-  //matopgintro1.collider = "none"
-  //loadImage('matopgintro1.webp');  
+
   matopgintro1 = loadImage('matopgintro1.webp'); 
   matopgintro2 = loadImage('matopgintro2.webp');  
   
@@ -120,13 +117,14 @@ function preload(){
 function setup() {
 	new Canvas(600, 400);
   
+  indeiopgave = false
   
   
   buttonmaker = false;
   
   bladre = 0;
   
-  opgavebestemmer = 1;
+  opgavebestemmer = 0;
   
   buttonchecker = true;
   
@@ -185,16 +183,19 @@ else if (kb.pressing('down')) {player.vel.y = 1.5;
     player.vel.y = 3
   }
 
-//console.log(player.x,player.y)
+console.log(player.x,player.y)
 //}
 
 //function matopgaver(){
 
-  if (mouse.pressed && mouse.x >= 170){
-player.x == 10
-console.log(player.x,player.y)
- }
-if(opgavebestemmer == 1){
+  if (mouse.x >= 145 && mouse.x <= 160 && mouse.y >= -25 && mouse.y <= 0 && indeiopgave == false){
+   indeiopgave = true;  
+   baggrund.x = baggrund.x+altimappet
+   bcollider.x = bcollider.x+altimappet
+   farmer.x = farmer.x+altimappet
+   opgavebestemmer = 1
+  }
+if(opgavebestemmer == 1 && indeiopgave == true){
   //første del hvor introduktioenen er.
   
   if(bladre == 0){
@@ -278,9 +279,45 @@ buttonchecker = false;
   
     //resultatet
   if(indtastedesvar == 37){
+    baggrund.x = baggrund.x-altimappet
+    bcollider.x = bcollider.x-altimappet
+    farmer.x = farmer.x-altimappet
+    indeiopgave = false
+ opgavebestemmer = 2
+
+    //hvis introduktionen ikke er skippet så kommer man tilbage på opgaven
   
-  rect(300,300,100,100)
+    if(bladre == 0){
+      opgavebestemmer = opgavebestemmer - 1;
+      
+      }
+      
+    
+    //her fjernes knapperne fra den forrige opg
+     if(opgavebestemmer == 2){
+    if(buttonchecker == false){
+      
+    myButton.remove();
+    myInput.remove();
+    
+    forklaring.remove(); 
+     
+    indtastedesvar = 0;
+     buttonmaker = false;
+    buttonchecker = true;
+           bladre = 0;
+     forklare = false;
+    
+    
+     opgavebestemmer = 0;
+      }
+    
+     
+      
+     }
+ 
   
+      
   }
   
   
@@ -291,51 +328,16 @@ buttonchecker = false;
   
 }
 
-
-
-
-if(opgavebestemmer == 2){
-  
-  //hvis introduktionen ikke er skippet så kommer man tilbage på opgaven
-  
-  if(bladre == 0){
-  opgavebestemmer = opgavebestemmer - 1;
-  
-  }
-  
-
-//her fjernes knapperne fra den forrige opg
- if(opgavebestemmer == 2){
-if(buttonchecker == false){
-  
-myButton.remove();
-myInput.remove();
-
-forklaring.remove(); 
- 
-indtastedesvar = 0;
- buttonmaker = false;
-buttonchecker = true;
-       bladre = 0;
- forklare = false;
-
-
- opgavebestemmer = opgavebestemmer + 1;
-  }
-
- 
-  
- }
-  
-  
-  
-  
+if (mouse.x >= -280 && mouse.x <= -269 && mouse.y >= 198 && mouse.y <= 215 && indeiopgave == false){
+    indeiopgave = true;  
+    baggrund.x = baggrund.x+altimappet
+    bcollider.x = bcollider.x+altimappet
+    dogOwner.x = dogOwner.x+altimappet
+      doggo.x = doggo.x+altimappet
+    opgavebestemmer = 3
+    
 }
-  
-  
-  
-
-if(opgavebestemmer == 3){
+if(opgavebestemmer == 3 && indeiopgave == true){
   
   
   
@@ -405,52 +407,39 @@ buttonchecker = false;
     
     }
      if(indtastedesvar == 3){
-  
-  rect(300,300,100,100)
+      baggrund.x = baggrund.x-altimappet
+      bcollider.x = bcollider.x-altimappet
+      dogOwner.x = dogOwner.x-altimappet
+      doggo.x = doggo.x-altimappet
+ opgavebestemmer = 0
+ indeiopgave = false
+      myButton.remove();
+      myInput.remove();
+      klikvidere.remove();
+      forklaring.remove(); 
+       
+      indtastedesvar = 0;
+       buttonmaker = false;
+      buttonchecker = true;
+             bladre = 0;
+       forklare = false;
+      
+    
+         
+          
+         }
   
   }
   
   }
 
-}
+
 
 console.log(bladre)
 console.log(buttonchecker)
 console.log(opgavebestemmer)
 
-if(opgavebestemmer == 4){
 
-if(bladre == 0){
-  opgavebestemmer = opgavebestemmer - 1;
-  
-  }
-  
-
-
- if(opgavebestemmer == 4){
-if(buttonchecker == false){
-  
-myButton.remove();
-myInput.remove();
-klikvidere.remove();
-forklaring.remove(); 
- 
-indtastedesvar = 0;
- buttonmaker = false;
-buttonchecker = true;
-       bladre = 0;
- forklare = false;
-
-
- opgavebestemmer = opgavebestemmer + 1;
-  }
-
- 
-  
- }
- 
-  
- }
 
 
 
@@ -459,6 +448,10 @@ buttonchecker = true;
 //console.log(stuff)
  
 }
+  
+  
+  
+
 
 
 
