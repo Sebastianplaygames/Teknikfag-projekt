@@ -139,7 +139,7 @@ else if (kb.pressing('down')) {player.vel.y = 1.5;
   } else if(player.x <= -width/2+2) {
     player.vel.x = 3
   } if(player.y >= height/2+70){
-    player.vel.y = -3
+    player.vel.y = -3 
   } else if(player.y <= -height/2-20) {
     player.vel.y = 3
   }
