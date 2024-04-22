@@ -1,32 +1,19 @@
 let player,farmer,doggo,baggrund, floor, bcollider;
 let playerimg;
-//
 let matopgintro1, matopgintro2, matopg1, matopg2, forklaring1, forklaring2, opgavebestemmer;
-let bladre, forklare;
-let forklaring;
-let klikvidere;
-let myButton;
-let myInput;
-let myText;
-let svar;
-let indtastedesvar;
-let buttonmaker;
-let indeiopgave;
-let buttonchecker;
+let bladre, forklare, forklaring;
+let myButton, myInput,klikvidere, myText,buttonmaker,buttonchecker;
+let svar, indtastedesvar;
 let altimappet = 1000;
-let klaret1, klaret2;
+let klaret1, klaret2, indeiopgave;
 function preload(){
   img = loadImage('doggo2.png');
-
+//opgaver
   matopgintro1 = loadImage('matopgintro1.webp'); 
   matopgintro2 = loadImage('matopgintro2.webp');  
-  
   matopg1 = loadImage('matopg1.webp');
-
   matopg2 = loadImage('matopg2.webp');
-  
   forklaring1 = loadImage('forklaring1.webp');
-  
   forklaring2 = loadImage('forklaring2.webp');
 
   //background colliders
@@ -62,11 +49,13 @@ function preload(){
   baggrund.collider = 'none';
   baggrund.img = 'skolewood.webp'
 
+//crow sprite
 crow = new Sprite(altimappet,170)
 crow.img = 'scarecrow.webp';
 crow.collider = 'none';
 crow.scale = 0.45
 
+//doghouse sprite
 doghouse = new Sprite(altimappet,150)
 doghouse.img = 'doggohouse.png';
 doghouse.collider = 'none';
@@ -85,6 +74,7 @@ doghouse.scale = 0.1
     });
  	farmer.changeAni('stand');
 
+//dogOwner npc sprite
   dogOwner = new Sprite(-276, 214,48, 25)
   dogOwner.spriteSheet = 'dogowner.png'; 
   dogOwner.collider = "none"
@@ -125,19 +115,14 @@ doghouse.scale = 0.1
 
 function setup() {
 	new Canvas(600, 400);
-  
+  //variablerne deffineres
   indeiopgave = false
   klaret1 = false
   klaret2 = false
-  
   buttonmaker = false;
-  
   bladre = 0;
-  
   opgavebestemmer = 0;
-  
   buttonchecker = true;
-  
   forklare = false;
   
   allSprites.pixelPerfect = true;
@@ -149,7 +134,6 @@ function setup() {
 }
 
 function draw() {
- 	bcollider.debug = mouse.pressing();
 	clear();
 
 //camera setup
@@ -157,9 +141,8 @@ camera.x = player.x;
 camera.y = player.y;
 camera.zoom = 2;
  
-  
-  
 // player movement + boundries
+if(indeiopgave == false){
 player.rotationLock = true;
   if (kb.pressing('left')){
     player.vel.x = -2;
@@ -183,6 +166,7 @@ else if (kb.pressing('down')) {player.vel.y = 1.5;
     player.changeAni('stand')  
   }
 
+}
   if(player.x >= width/2-2){
     player.vel.x = -3
   } else if(player.x <= -width/2+2) {
@@ -193,11 +177,7 @@ else if (kb.pressing('down')) {player.vel.y = 1.5;
     player.vel.y = 3
   }
 
-console.log(player.x,player.y)
-//}
-
-//function matopgaver(){
-
+//opgave 1 start.  
   if (mouse.x >= 145 && mouse.x <= 160 && mouse.y >= -25 && mouse.y <= 0 && indeiopgave == false && klaret1 == false){
    indeiopgave = true;  
    baggrund.x = baggrund.x+altimappet
@@ -206,7 +186,7 @@ console.log(player.x,player.y)
    opgavebestemmer = 1
   }
 if(opgavebestemmer == 1 && indeiopgave == true){
-  //første del hvor introduktioenen er.
+  //introduktion 
   
   if(bladre == 0){
   
@@ -223,45 +203,32 @@ image(matopgintro1,0,0);
     
     buttonmaker = true;
     }
-    
-
-    
   }
     //anden del hvor selve opgaven er.
   if(bladre == 1){
-    
-    
     image(matopg1,0,0);
-    
+
   //buttonmaker når den er rigtig laver knapperne til selve opgaven
   if(buttonmaker){
-   
   myButton = createButton('godkend');
-  
   myInput = createInput('svar');
   
   myInput.position(20, 250);
   
   myButton.position(25 + myInput.width, 250);
     
-    myButton.mousePressed(gemværdi);
+  myButton.mousePressed(gemværdi);
     
-    myInput.input(typing);
+  myInput.input(typing);
     
     
      forklaring = createButton('forklar');
-    
     forklaring.position(250 , 20);
-    
     forklaring.mousePressed(forklar);
-    
-
     buttonmaker = false;
     
   }
-    
-    
-    
+
     //buttonchecker fjerner skip knappen for introen
               if(buttonchecker == true){
   
@@ -295,44 +262,27 @@ buttonchecker = false;
   
     if(bladre == 0){
       opgavebestemmer = opgavebestemmer - 1;
-      
       }
-      
     
     //her fjernes knapperne fra den forrige opg
-     if(opgavebestemmer == 2){
+    if(opgavebestemmer == 2){
     if(buttonchecker == false){
-      
     myButton.remove();
     myInput.remove();
-    
     forklaring.remove(); 
-     
+
     indtastedesvar = 0;
-     buttonmaker = false;
+    buttonmaker = false;
     buttonchecker = true;
-           bladre = 0;
-     forklare = false;
-    
-    
-     opgavebestemmer = 0;
+    bladre = 0;
+    forklare = false;
+    opgavebestemmer = 0;
       }
-    
-     
-      
      }
- 
-  
-      
   }
-  
-  
-  
-  
-  
-  //anden del slut
-  
 }
+//anden del slut
+
 
 if (mouse.x >= -280 && mouse.x <= -269 && mouse.y >= 198 && mouse.y <= 215 && indeiopgave == false && klaret2 == false){
     indeiopgave = true;  
@@ -386,32 +336,23 @@ image(matopgintro2,0,-60);
     myButton.mousePressed(gemværdi);
     
     myInput.input(typing);
-    
-    
      forklaring = createButton('forklar');
-    
     forklaring.position(250 , 20);
     
     forklaring.mousePressed(forklar);
-    
-
     buttonmaker = false;
-    
   }
   
   if(buttonchecker == true){
-  
 klikvidere.remove();
-
 buttonchecker = false;
 
   }
-    
+
     if(forklare){
-    
     image(forklaring2,300,0);
-    
     }
+
      if(indtastedesvar == 3){
       baggrund.x = baggrund.x-altimappet
       bcollider.x = bcollider.x-altimappet
@@ -431,50 +372,11 @@ buttonchecker = false;
       buttonchecker = true;
              bladre = 0;
        forklare = false;
-      
-    
-         
-          
-         }
-  
-  }
-  
-  }
 
-
-
-console.log(bladre)
-console.log(buttonchecker)
-console.log(opgavebestemmer)
-
-
-
-
-
-//console.log(forklare)
-//console.log(opgavebestemmer)
-//console.log(stuff)
- 
+      }
+    }
+  } 
 }
-  
-  
-  
-
-
-
-
-function opgrader(){
-
-opgavebestemmer = opgavebestemmer + 1;
-
-
-if(opgavebestemmer >= 5){
-opgavebestemmer = 1;
-
-}
-
-}
-
 
 function gemværdi() {
   
@@ -486,24 +388,13 @@ function typing() {
 }
 
 function bladrer(){
-
 bladre = bladre + 1;
-
 if(bladre == 2){
   bladre = 0
-}
-
+  }
 }
 
 
 function forklar(){
-
-
-
 forklare = !forklare;
-
-  
-
-
-
 }
