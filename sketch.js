@@ -1,5 +1,19 @@
 let player,farmer,doggo,baggrund, floor, bcollider;
 let playerimg;
+//
+let matopgintro1, matopgintro2, matopg1, matopg2, forklaring1, forklaring2, opgavebestemmer;
+let bladre, forklare;
+let forklaring;
+let klikvidere;
+let myButton;
+let myInput;
+let myText;
+let stuff;
+let bgColor;
+let actualstuff;
+let buttonmaker;
+
+let buttonchecker;
 
 function preload(){
   img = loadImage('doggo2.png');

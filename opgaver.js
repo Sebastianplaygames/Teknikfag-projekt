@@ -2,12 +2,7 @@ class Opgaver{
 
  
   
-  let buttonchecker;
 constructor(){
-    let button = createButton('click me');
-    button.position(150, 350);
-    
-    button.mousePressed(opgrader);
     
     
     buttonmaker = false;
@@ -27,11 +22,6 @@ constructor(){
 function matopger(){
 
 if(opgavebestemmer == 1){
-    
-    
-   
-    
-    
     
     //første del hvor introduktioenen er.
     
@@ -332,13 +322,6 @@ bladre = bladre + 1;
 
 
 function forklar(){
-
-  
- 
 forklare = !forklare;
-  
-    
-  
-
 
 }
